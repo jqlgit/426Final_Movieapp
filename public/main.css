@@ -27,69 +27,72 @@ img{
     background-color: var(--dark-color);
 }
 .wrapper .container{
-    max-width: 1200px;
+    max-width: 10px;
     margin: 0 auto;
     padding: 0 1rem;
 }
-.search-container{
+.search-container {
     background-color: var(--md-dark-color);
-    height: 180px;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    height: 92.4vh; /* Adjust height as needed */
+    width: 600px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding-left: 20px; /* Add padding to the left for spacing */
     display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the start (left) of the container */
 }
-.logo{
+
+
+.logo {
     padding: 1rem 0;
-    border-bottom: 1px solid var(--light-dark-color);
+    border-bottom: 1px solid red;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    left: 50%;
+    right: 50%;
 }
+
 .logo p{
     font-size: 2rem;
     color: #fff;
     font-weight: bold;
 }
 .logo p span{
-    color: var(--yellow-color);
+    color: red;
 }
-.search-element{
-    display: -webkit-box;
-    display: -ms-flexbox;
+.search-element {
     display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    align-items: flex-start; /* Align items to the top of the container */
+    justify-content: center;
+    flex-direction: column;
     position: relative;
+    padding-right: .5rem;
+    top: -350px;
 }
+
 .search-element h3{
     -ms-flex-item-align: center;
         align-self: center;
-    margin-right: 1rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-right: 5%;    
     color: #fff;
     font-weight: 500;
     margin-bottom: 1.5rem;
 }
 .search-element .form-control{
-    padding: 1rem 2rem;
+    padding: .5rem 1rem;
     font-size: 1.4rem;
     border: none;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
     outline: none;
     color: var(--light-dark-color);
-    width: 350px;
+    width: 300px;
 }
 .search-list{
     position: absolute;

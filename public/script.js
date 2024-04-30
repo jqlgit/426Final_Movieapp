@@ -4,12 +4,19 @@ const resultGrid = document.getElementById('result-grid');
 
 // Load movies from server
 async function loadMovies(searchTerm) {
-  const response = await fetch(`/search/${searchTerm}`);
-  const data = await response.json();
-  if (data.Response === "True") {
-    displayMovieList(data.Search);
+  try {
+    const response = await fetch(`/search/${searchTerm}`);
+    const data = await response.json();
+    if (data.Response === "True") {
+      displayMovieList(data.Search);
+    } else {
+      console.error("Error: Movie search failed");
+    }
+  } catch (error) {
+    console.error("Error fetching movie data:", error);
   }
 }
+
 
 function findMovies() {
   let searchTerm = (movieSearchBox.value).trim();

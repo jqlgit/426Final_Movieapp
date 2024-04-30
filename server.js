@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.get('/search/:title', async (req, res) => {
   const title = req.params.title;
-  const url = `http://www.omdbapi.com/?s=${title}&apikey=cbe075ed`;
+  const url = `http://www.omdbapi.com/?s=${title}&apikey=fc1fef96`;
 
   try {
     const response = await axios.get(url);
@@ -26,7 +26,7 @@ app.get('/search/:title', async (req, res) => {
 
 app.get('/movie/:id', async (req, res) => {
   const movieId = req.params.id;
-  const url = `http://www.omdbapi.com/?i=${movieId}&apikey=cbe075ed`;
+  const url = `http://www.omdbapi.com/?i=${movieId}&apikey=fc1fef96`;
 
   try {
     const response = await axios.get(url);
