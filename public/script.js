@@ -1,22 +1,16 @@
 const movieSearchBox = document.getElementById('movie-search-box');
 const searchList = document.getElementById('search-list');
 const resultGrid = document.getElementById('result-grid');
+const favoriteMoviesList = document.getElementById('favorite-movies-list');
 
 // Load movies from server
 async function loadMovies(searchTerm) {
-  try {
-    const response = await fetch(`/search/${searchTerm}`);
-    const data = await response.json();
-    if (data.Response === "True") {
-      displayMovieList(data.Search);
-    } else {
-      console.error("Error: Movie search failed");
-    }
-  } catch (error) {
-    console.error("Error fetching movie data:", error);
+  const response = await fetch(`/search/${searchTerm}`);
+  const data = await response.json();
+  if (data.Response === "True") {
+    displayMovieList(data.Search);
   }
 }
-
 
 function findMovies() {
   let searchTerm = (movieSearchBox.value).trim();
@@ -82,33 +76,56 @@ function displayMovieDetails(details) {
       <p class="plot"><b>Plot:</b> ${details.Plot}</p>
       <p class="language"><b>Language:</b> ${details.Language}</p>
       <p class="awards"><b><i class="fas fa-award"></i></b> ${details.Awards}</p>
-      <button class="add-to-favorites" onclick="addToFavorites()">Add to Favorites</button>
+      <button class="add-to-favorites" onclick="addToFavorites('${details.Title}')">Add to Favorites</button>
     </div>
   `;
 }
 
-async function addToFavorites() {
-  const movieId = resultGrid.querySelector('.movie-poster img').dataset.id;
-  const movieTitle = resultGrid.querySelector('.movie-title').textContent;
+let favoriteMovies = [];
 
-  try {
-    const response = await fetch('/favorites', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ movieId, movieTitle }),
-    });
+function addToFavorites(movieTitle) {
+  favoriteMovies.push(movieTitle);
+  displayFavoriteMovies();
+}
 
-    if (response.ok) {
-      alert('Movie added to favorites!');
-    } else {
-      alert('Failed to add movie to favorites.');
+function displayFavoriteMovies() {
+  favoriteMoviesList.innerHTML = "";
+
+  favoriteMovies.forEach((movie, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${index + 1}. ${movie}`; // Add counter before movie title
+
+    // Create a star rating div for each movie
+    const starRatingDiv = document.createElement('div');
+    starRatingDiv.classList.add('star-rating');
+
+    // Create stars and append to the star rating div
+    for (let i = 1; i <= 5; i++) {
+      const star = document.createElement('span');
+      star.classList.add('star');
+      star.setAttribute('data-value', i);
+      star.addEventListener('click', (event) => {
+        const clickedValue = parseInt(event.target.getAttribute('data-value'));
+        const stars = event.target.parentElement.querySelectorAll('.star');
+
+        // Remove active class from all stars
+        stars.forEach(star => {
+          star.classList.remove('active');
+        });
+
+        // Add active class to clicked star and all preceding stars
+        for (let i = 0; i < clickedValue; i++) {
+          stars[i].classList.add('active');
+        }
+      });
+      starRatingDiv.appendChild(star);
     }
-  } catch (error) {
-    console.error('Error adding movie to favorites:', error);
-    alert('Failed to add movie to favorites.');
-  }
+
+    // Append the star rating div to the list item
+    li.appendChild(starRatingDiv);
+
+    favoriteMoviesList.appendChild(li);
+  });
 }
 
 window.addEventListener('click', (event) => {
