@@ -31,12 +31,12 @@ The user experience is designed to be simple, with easy navigation and user-frie
 
 
 ## Contributors
-Justin Li 
+Justin Li (730610101)
 
-Matthew Vandeusen 
+Matthew Vandeusen (730527491)
 
-Anjali Yellapuntula Venketa
+Anjali Yellapuntula Venketa (730716582)
 
-Aftab Khan
+Aftab Khan (730644047)
 
 
