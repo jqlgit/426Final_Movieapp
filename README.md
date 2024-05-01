@@ -33,7 +33,7 @@ The user experience is designed to be simple, with easy navigation and user-frie
 ## Contributors
 Justin Li (730610101)
 
-Matthew Vandeusen (730527491)
+Matthew Van Deusen (730527491)
 
 Anjali Yellapuntula Venketa (730716582)
 
