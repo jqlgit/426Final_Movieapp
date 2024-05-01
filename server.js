@@ -6,10 +6,8 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 
-// In-memory storage for favorite movies
 let favorites = [];
 
-// Handle the root route
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
@@ -40,14 +38,12 @@ app.get('/movie/:id', async (req, res) => {
   }
 });
 
-// Add a movie to favorites
 app.post('/favorites', (req, res) => {
   const { movieTitle } = req.body;
   favorites.push(movieTitle);
   res.sendStatus(200);
 });
 
-// Get favorite movies
 app.get('/favorites', (req, res) => {
   res.json(favorites);
 });
